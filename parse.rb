@@ -6,7 +6,13 @@ require 'pry'
 $tweets = Array.new
 
 #gets list of files 
-file_list = ["dev.htm","2fa.htm"]
+
+file_list = Array.new 
+
+Dir.glob("*.htm").each do |dir| 
+	file_list << dir 
+end
+
 
 #parser function to open html files and return dates 
 
