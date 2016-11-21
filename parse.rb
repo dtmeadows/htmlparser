@@ -2,15 +2,32 @@
 require 'nokogiri'
 require 'pry'
 
-page = Nokogiri::HTML(open("dev.htm"))
+#declares stuff
+$tweets = Array.new
 
-tags = page.css(".started")
+#gets list of files 
+file_list = ["dev.htm","2fa.htm"]
 
-days= Array.new
+#parser function to open html files and return dates 
 
-tags.each do |tag| 
-	days << tag.text.strip
+def html_parser(file)
+
+	page = Nokogiri::HTML(open(file))
+
+
+	tags = page.css(".started")
+	tags.each do |tag| 
+		$tweets << {:timestamp => tag.text.strip, :tag => file} 
+	end
+
+	return tags
+
 end
 
-binding.pry
+#calls parser for each file 
 
+file_list.each do |file|
+	html_parser(file)
+end
+
+p $tweets
