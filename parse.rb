@@ -6,7 +6,7 @@ require 'csv'
 #declares stuff
 $tweets = Array.new
 
-#gets list of files 
+#gets list of html files from working directory
 
 file_list = Array.new 
 
