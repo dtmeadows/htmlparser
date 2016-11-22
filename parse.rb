@@ -41,7 +41,7 @@ end
 
 CSV.open("test.csv", "wb") do |csv| 
 	$tweets.each do |tweet|
-		csv << [tweet[:timestamp], tweet[:tag]] 
+		csv << [tweet[:timestamp], File.basename(tweet[:tag],File.extname(tweet[:tag]))] 
 	end
 	p "Successfully output CSV."
 end 
